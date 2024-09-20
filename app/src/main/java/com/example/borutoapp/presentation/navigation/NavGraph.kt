@@ -30,7 +30,9 @@ fun NavGraph(
             )
         }
         composable(route = Screen.Welcome.route) {
-            WelcomeScreen()
+            WelcomeScreen(
+                onGetStarted = {}
+            )
         }
         composable(route = Screen.Home.route) {
 

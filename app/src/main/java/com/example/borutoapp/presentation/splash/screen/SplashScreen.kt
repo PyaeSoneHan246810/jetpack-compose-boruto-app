@@ -1,14 +1,10 @@
 package com.example.borutoapp.presentation.splash.screen
 
 import android.content.res.Configuration
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.scaleIn
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -20,15 +16,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.borutoapp.R
 import com.example.borutoapp.presentation.navigation.Screen
+import com.example.borutoapp.presentation.splash.component.AnimatedSplashLogo
 import com.example.borutoapp.presentation.ui.theme.MainAppTheme
 import com.example.borutoapp.presentation.ui.theme.Pink
 import com.example.borutoapp.presentation.ui.theme.PinkLight
-import com.example.borutoapp.presentation.ui.theme.SPLASH_SCREEN_LOGO_SIZE
 import kotlinx.coroutines.delay
 
 @Composable
@@ -88,29 +81,12 @@ fun SplashContentDarkMode(
         modifier = modifier
             .fillMaxSize()
             .background(
-                color = MaterialTheme.colorScheme.background
+                color = MaterialTheme.colorScheme.surface
             ),
         contentAlignment = Alignment.Center
     ) {
         AnimatedSplashLogo(
             splashLogoVisible = splashLogoVisible
-        )
-    }
-}
-
-@Composable
-fun AnimatedSplashLogo(
-    splashLogoVisible: Boolean,
-) {
-    AnimatedVisibility(
-        visible = splashLogoVisible,
-        enter = scaleIn(),
-    ) {
-        Image(
-            modifier = Modifier
-                .size(SPLASH_SCREEN_LOGO_SIZE),
-            painter = painterResource(id = R.drawable.splash_screen_logo),
-            contentDescription = stringResource(id = R.string.splash_screen_logo)
         )
     }
 }
