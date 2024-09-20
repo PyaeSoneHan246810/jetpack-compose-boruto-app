@@ -5,4 +5,6 @@ object Constants {
     const val DATABASE_HEROES = "heroes_db"
     const val DATABASE_TABLE_HERO = "hero_table"
     const val DATABASE_TABLE_HERO_REMOTE_KEY = "hero_remote_key_table"
+    const val DATASTORE_USER_MANAGER = "user_manager"
+    const val DATASTORE_KEY_APP_ENTRY = "app_entry"
 }

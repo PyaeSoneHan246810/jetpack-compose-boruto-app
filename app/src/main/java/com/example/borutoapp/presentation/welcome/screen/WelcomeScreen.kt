@@ -22,15 +22,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.borutoapp.presentation.navigation.Screen
 import com.example.borutoapp.presentation.ui.theme.MainAppTheme
 import com.example.borutoapp.presentation.welcome.component.GetStartedButton
 import com.example.borutoapp.presentation.welcome.component.OnboardingIndicators
 import com.example.borutoapp.presentation.welcome.component.OnboardingPager
+import com.example.borutoapp.presentation.welcome.event.WelcomeEvent
 
 @Composable
 fun WelcomeScreen(
     modifier: Modifier = Modifier,
-    onGetStarted: () -> Unit
+    onNavigateToHomeScreen: (route: String) -> Unit,
+    onSaveAppEntryState: (event: WelcomeEvent) -> Unit
 ) {
     val pagerState = rememberPagerState(
         initialPage = 0,
@@ -88,7 +91,10 @@ fun WelcomeScreen(
                         ) + fadeOut()
                     ) {
                         GetStartedButton(
-                            onGetStartedClicked = onGetStarted
+                            onGetStartedClicked = {
+                                onSaveAppEntryState(WelcomeEvent.SaveAppEntryState)
+                                onNavigateToHomeScreen(Screen.Home.route)
+                            }
                         )
                     }
                 }
@@ -103,7 +109,8 @@ fun WelcomeScreen(
 private fun WelcomeScreenPrev() {
     MainAppTheme {
         WelcomeScreen(
-            onGetStarted = {}
+            onNavigateToHomeScreen = {},
+            onSaveAppEntryState = {}
         )
     }
 }
