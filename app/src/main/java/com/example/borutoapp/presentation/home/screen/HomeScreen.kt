@@ -9,12 +9,15 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.paging.compose.LazyPagingItems
+import com.example.borutoapp.domain.model.Hero
 import com.example.borutoapp.presentation.home.component.HomeTopAppBar
 import com.example.borutoapp.presentation.ui.theme.MainAppTheme
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
+    heroes: LazyPagingItems<Hero>
 ) {
     Scaffold(
         modifier = modifier
@@ -33,7 +36,6 @@ fun HomeScreen(
                     top = paddingValues.calculateTopPadding()
                 )
         ) {
-
         }
     }
 }
@@ -43,6 +45,8 @@ fun HomeScreen(
 @Composable
 private fun HomeScreenPrev() {
     MainAppTheme {
-        HomeScreen()
+//        HomeScreen(
+//            heroes = LazyPagingItems()
+//        )
     }
 }

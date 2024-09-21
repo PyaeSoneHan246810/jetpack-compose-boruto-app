@@ -13,7 +13,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.borutoapp.presentation.home.screen.HomeScreen
+import com.example.borutoapp.presentation.home.viewModel.HomeViewModel
 import com.example.borutoapp.presentation.splash.screen.SplashScreen
 import com.example.borutoapp.presentation.splash.viewModel.SplashViewModel
 import com.example.borutoapp.presentation.welcome.screen.WelcomeScreen
@@ -58,7 +60,11 @@ fun NavGraph(
             )
         }
         composable(route = Screen.Home.route) {
-            HomeScreen()
+            val homeViewModel: HomeViewModel = hiltViewModel()
+            val heroes = homeViewModel.heroes!!.collectAsLazyPagingItems()
+            HomeScreen(
+                heroes = heroes
+            )
         }
         composable(
             route = Screen.Details.route,

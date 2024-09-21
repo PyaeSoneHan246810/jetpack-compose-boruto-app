@@ -14,7 +14,7 @@ interface HeroRemoteKeyDao {
     suspend fun getRemoteKey(id: Int): HeroRemoteKey?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addAllRemoteKeys(keys: List<HeroRemoteKey>)
+    suspend fun saveAllRemoteKeys(keys: List<HeroRemoteKey>)
 
     @Query("""
         DELETE FROM hero_remote_key_table
