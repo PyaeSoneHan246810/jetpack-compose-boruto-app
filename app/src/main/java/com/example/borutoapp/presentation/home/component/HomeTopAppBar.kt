@@ -31,7 +31,7 @@ fun HomeTopAppBar(
             actionIconContentColor = MaterialTheme.colorScheme.onPrimary
         ),
         title = {
-            Text(text = stringResource(id = R.string.home))
+            Text(text = stringResource(id = R.string.home_title))
         },
         actions = {
             IconButton(
@@ -39,7 +39,7 @@ fun HomeTopAppBar(
             ) {
                 Icon(
                     imageVector = Icons.Default.Search,
-                    contentDescription = stringResource(id = R.string.search)
+                    contentDescription = stringResource(id = R.string.search_title)
                 )
             }
         }

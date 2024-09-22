@@ -23,7 +23,7 @@ fun AnimatedSplashLogo(
             modifier = Modifier
                 .size(SPLASH_SCREEN_LOGO_SIZE),
             painter = painterResource(id = R.drawable.splash_screen_logo),
-            contentDescription = stringResource(id = R.string.splash_screen_logo)
+            contentDescription = stringResource(id = R.string.splash_screen_logo_content_desc)
         )
     }
 }

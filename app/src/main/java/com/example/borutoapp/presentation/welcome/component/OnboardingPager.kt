@@ -58,7 +58,7 @@ fun OnboardingPage(
             modifier = Modifier
                 .size(ONBOARDING_IMAGE_SIZE),
             painter = painterResource(id = onboardingPage.image),
-            contentDescription = stringResource(id = R.string.onboarding_image),
+            contentDescription = stringResource(id = R.string.onboarding_image_content_desc),
             contentScale = ContentScale.Fit
         )
         Spacer(
