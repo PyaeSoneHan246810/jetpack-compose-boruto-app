@@ -9,6 +9,7 @@ import com.example.borutoapp.data.local.database.HeroesDatabase
 import com.example.borutoapp.data.remote.api.HeroesApi
 import com.example.borutoapp.domain.model.Hero
 import com.example.borutoapp.domain.model.HeroRemoteKey
+import com.example.borutoapp.util.Constants
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
@@ -18,6 +19,18 @@ class HeroRemoteMediator @Inject constructor(
 ) : RemoteMediator<Int, Hero>() {
     private val heroDao = heroesDatabase.heroDao
     private val heroRemoteKeyDao = heroesDatabase.heroRemoteKeyDao
+
+    override suspend fun initialize(): InitializeAction {
+        val currentTime = System.currentTimeMillis()
+        val lastUpdated = heroRemoteKeyDao.getRemoteKey(id = 1)?.lastUpdated ?: 0L
+        val diffInMinutes = ((currentTime - lastUpdated) / 1000 / 60).toInt()
+        val cacheTimeOutInMinutes = Constants.CACHE_TIMEOUT_IN_MINUTES
+        return if (diffInMinutes <= cacheTimeOutInMinutes) {
+            InitializeAction.SKIP_INITIAL_REFRESH
+        } else {
+            InitializeAction.LAUNCH_INITIAL_REFRESH
+        }
+    }
 
     override suspend fun load(loadType: LoadType, state: PagingState<Int, Hero>): MediatorResult {
         return try {
@@ -42,13 +55,12 @@ class HeroRemoteMediator @Inject constructor(
                         heroRemoteKeyDao.deleteAllRemoteKeys()
                         heroDao.deleteAllHeroes()
                     }
-                    val prevPage = heroesResponse.prevPage
-                    val nextPage = heroesResponse.nextPage
                     val heroRemoteKeys = heroesResponse.heroes.map { hero ->
                         HeroRemoteKey(
                             id = hero.id,
-                            prevPage = prevPage,
-                            nextPage = nextPage
+                            prevPage = heroesResponse.prevPage,
+                            nextPage = heroesResponse.nextPage,
+                            lastUpdated = heroesResponse.lastUpdated
                         )
                     }
                     heroRemoteKeyDao.saveAllRemoteKeys(heroRemoteKeys)

@@ -10,4 +10,5 @@ object Constants {
     const val API_BASE_URL = "http://10.0.2.2:8080"
     const val RESPONSE_CONTENT_TYPE = "application/json"
     const val PAGING_PAGE_SIZE = 3
+    const val CACHE_TIMEOUT_IN_MINUTES = 1440
 }
