@@ -9,5 +9,5 @@ object Constants {
     const val DATASTORE_KEY_APP_ENTRY = "app_entry"
     const val API_BASE_URL = "http://10.0.2.2:8080"
     const val RESPONSE_CONTENT_TYPE = "application/json"
-    const val DATA_ITEMS_PER_PAGE = 3
+    const val PAGING_PAGE_SIZE = 3
 }

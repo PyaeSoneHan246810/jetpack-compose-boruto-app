@@ -25,7 +25,6 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getAllHeroes() {
-        heroes = heroesUseCases.getAllHeroes.invoke()
-            .cachedIn(viewModelScope)
+        heroes = heroesUseCases.getAllHeroes.invoke().cachedIn(viewModelScope)
     }
 }

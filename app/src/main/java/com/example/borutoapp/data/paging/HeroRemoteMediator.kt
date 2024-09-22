@@ -16,7 +16,7 @@ class HeroRemoteMediator @Inject constructor(
     private val heroesApi: HeroesApi,
     private val heroesDatabase: HeroesDatabase
 ) : RemoteMediator<Int, Hero>() {
-    private val heroesDao = heroesDatabase.heroDao
+    private val heroDao = heroesDatabase.heroDao
     private val heroRemoteKeyDao = heroesDatabase.heroRemoteKeyDao
 
     override suspend fun load(loadType: LoadType, state: PagingState<Int, Hero>): MediatorResult {
@@ -40,19 +40,19 @@ class HeroRemoteMediator @Inject constructor(
                 heroesDatabase.withTransaction {
                     if (loadType == LoadType.REFRESH) {
                         heroRemoteKeyDao.deleteAllRemoteKeys()
-                        heroesDao.deleteAllHeroes()
+                        heroDao.deleteAllHeroes()
                     }
                     val prevPage = heroesResponse.prevPage
                     val nextPage = heroesResponse.nextPage
-                    val remoteKeys = heroesResponse.heroes.map { hero ->
+                    val heroRemoteKeys = heroesResponse.heroes.map { hero ->
                         HeroRemoteKey(
                             id = hero.id,
                             prevPage = prevPage,
                             nextPage = nextPage
                         )
                     }
-                    heroRemoteKeyDao.saveAllRemoteKeys(remoteKeys)
-                    heroesDao.saveAllHeroes(heroesResponse.heroes)
+                    heroRemoteKeyDao.saveAllRemoteKeys(heroRemoteKeys)
+                    heroDao.saveAllHeroes(heroesResponse.heroes)
                 }
             }
             MediatorResult.Success(endOfPaginationReached = heroesResponse.nextPage == null)

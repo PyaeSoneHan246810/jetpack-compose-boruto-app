@@ -61,10 +61,14 @@ fun NavGraph(
         }
         composable(route = Screen.Home.route) {
             val homeViewModel: HomeViewModel = hiltViewModel()
-            val heroes = homeViewModel.heroes!!.collectAsLazyPagingItems()
-            HomeScreen(
-                heroes = heroes
-            )
+            homeViewModel.heroes?.let {  heroesFlow ->
+                HomeScreen(
+                    heroes = heroesFlow.collectAsLazyPagingItems(),
+                    onNavigateToDetailsScreen = { heroId ->
+
+                    }
+                )
+            }
         }
         composable(
             route = Screen.Details.route,

@@ -22,7 +22,7 @@ class HeroesDataSourceImpl(
     override fun getAllHeroes(): Flow<PagingData<Hero>> {
         val pager = Pager(
             config = PagingConfig(
-                pageSize = Constants.DATA_ITEMS_PER_PAGE
+                pageSize = Constants.PAGING_PAGE_SIZE
             ),
             remoteMediator = HeroRemoteMediator(
                 heroesApi = heroesApi,
