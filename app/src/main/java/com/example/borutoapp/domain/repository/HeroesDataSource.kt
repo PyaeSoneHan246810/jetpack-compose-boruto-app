@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
 interface HeroesDataSource {
     fun getAllHeroes(): Flow<PagingData<Hero>>
 
-    fun searchHeroes(): Flow<PagingData<Hero>>
+    fun searchHeroes(name: String): Flow<PagingData<Hero>>
 }

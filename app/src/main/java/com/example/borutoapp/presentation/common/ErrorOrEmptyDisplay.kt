@@ -31,10 +31,10 @@ import com.example.borutoapp.presentation.ui.theme.ERROR_IMAGE_SIZE
 import com.example.borutoapp.presentation.ui.theme.MainAppTheme
 
 @Composable
-fun ErrorDisplay(
+fun ErrorOrEmptyDisplay(
     modifier: Modifier = Modifier,
-    @StringRes errorMessage: Int,
-    @DrawableRes errorImage: Int
+    @StringRes message: Int,
+    @DrawableRes image: Int
 ) {
     var animationStarted by rememberSaveable {
         mutableStateOf(false)
@@ -49,20 +49,20 @@ fun ErrorDisplay(
     LaunchedEffect(key1 = true) {
         animationStarted = true
     }
-    ErrorContent(
+    ErrorOrEmptyContent(
         modifier = modifier,
         alphaValue = alphaState.value,
-        errorMessage = errorMessage,
-        errorImage = errorImage
+        message = message,
+        image = image
     )
 }
 
 @Composable
-fun ErrorContent(
+fun ErrorOrEmptyContent(
     modifier: Modifier = Modifier,
     alphaValue: Float,
-    @StringRes errorMessage: Int,
-    @DrawableRes errorImage: Int
+    @StringRes message: Int,
+    @DrawableRes image: Int
 ) {
     Surface(
         modifier = modifier
@@ -78,14 +78,14 @@ fun ErrorContent(
                 modifier = Modifier
                     .size(ERROR_IMAGE_SIZE)
                     .alpha(alphaValue),
-                painter = painterResource(id = errorImage),
+                painter = painterResource(id = image),
                 contentDescription = stringResource(id = R.string.error_image_content_desc),
                 contentScale = ContentScale.Crop
             )
             Text(
                 modifier = Modifier
                     .alpha(alphaValue),
-                text = stringResource(id = errorMessage),
+                text = stringResource(id = message),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface
             )
@@ -96,12 +96,12 @@ fun ErrorContent(
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, name = "Light Mode")
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark Mode")
 @Composable
-private fun ErrorContentPrev() {
+private fun ErrorOrEmptyContentPrev() {
     MainAppTheme {
-        ErrorContent(
+        ErrorOrEmptyContent(
             alphaValue = 1f,
-            errorMessage = R.string.server_error_message,
-            errorImage = R.drawable.error_server
+            message = R.string.server_error_message,
+            image = R.drawable.error_server
         )
     }
 }

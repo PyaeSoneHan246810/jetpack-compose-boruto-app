@@ -13,9 +13,11 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.borutoapp.presentation.details.screen.DetailsScreen
 import com.example.borutoapp.presentation.home.screen.HomeScreen
 import com.example.borutoapp.presentation.home.viewModel.HomeViewModel
+import com.example.borutoapp.presentation.search.screen.SearchScreen
+import com.example.borutoapp.presentation.search.viewModel.SearchViewModel
 import com.example.borutoapp.presentation.splash.screen.SplashScreen
 import com.example.borutoapp.presentation.splash.viewModel.SplashViewModel
 import com.example.borutoapp.presentation.welcome.screen.WelcomeScreen
@@ -61,14 +63,15 @@ fun NavGraph(
         }
         composable(route = Screen.Home.route) {
             val homeViewModel: HomeViewModel = hiltViewModel()
-            homeViewModel.heroes?.let {  heroesFlow ->
-                HomeScreen(
-                    heroes = heroesFlow.collectAsLazyPagingItems(),
-                    onNavigateToDetailsScreen = { heroId ->
-
-                    }
-                )
-            }
+            HomeScreen(
+                heroes = homeViewModel.heroes,
+                onNavigateToSearchScreen = { route ->
+                    navController.navigate(route)
+                },
+                onNavigateToDetailsScreen = { route ->
+                    navController.navigate(route)
+                }
+            )
         }
         composable(
             route = Screen.Details.route,
@@ -81,10 +84,19 @@ fun NavGraph(
                 )
             )
         ) {
-
+            DetailsScreen()
         }
         composable(route = Screen.Search.route) {
-
+            val searchViewModel: SearchViewModel = hiltViewModel()
+            SearchScreen(
+                searchState = searchViewModel.searchState,
+                onSearchQueryUpdated = searchViewModel::onEvent,
+                onSearchQueryCleared = searchViewModel::onEvent,
+                onSearchHeroes = searchViewModel::onEvent,
+                onNavigateToDetailsScreen = { route ->
+                    navController.navigate(route)
+                }
+            )
         }
     }
 }

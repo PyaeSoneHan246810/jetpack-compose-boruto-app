@@ -5,7 +5,10 @@
     <string name="error_image_content_desc">Error Image</string>
     <string name="home_title">Home</string>
     <string name="search_title">Search</string>
+    <string name="search_bar_placeholder">Search...</string>
     <string name="server_error_message">Server Unavailable.</string>
     <string name="connection_error_message">Internet Unavailable.</string>
     <string name="unknown_error_message">Unknown Error Occurred.</string>
+    <string name="search_hero">Find your favorite hero.</string>
+    <string name="empty_search_result_message">Could not find any heroes.</string>
 </resources>
