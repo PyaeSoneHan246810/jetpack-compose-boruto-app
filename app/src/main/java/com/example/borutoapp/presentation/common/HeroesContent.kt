@@ -55,14 +55,15 @@ fun HeroesContent(
                         R.drawable.error_unknown
                     }
                 }
-                ErrorOrEmptyDisplay(
+                ErrorDisplay(
                     modifier = modifier,
+                    heroes = heroes,
                     message = errorMessage,
                     image = errorImage
                 )
             }
             heroes.itemCount <= 0 -> {
-                ErrorOrEmptyDisplay(
+                EmptyDisplay(
                     modifier = modifier,
                     message = R.string.empty_search_result_message,
                     image = R.drawable.search_empty_result
@@ -77,7 +78,7 @@ fun HeroesContent(
             }
         }
     }
-    ErrorOrEmptyDisplay(
+    EmptyDisplay(
         modifier = modifier,
         message = R.string.search_hero,
         image = R.drawable.search
