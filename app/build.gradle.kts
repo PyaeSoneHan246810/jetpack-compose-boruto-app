@@ -52,21 +52,39 @@ android {
 
 dependencies {
 
+    //Core & Lifecycle
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    //Compose
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
+
+    //UI
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
+
+    //Material 3
     implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
+
+    //Material Icons Extended
+    implementation(libs.material.icons.extended)
+
+    //Debug
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
+
+    //Android Test
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+
+    //Test
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
 
     //Preferences DataStore
     implementation(libs.datastore.preferences)
@@ -82,7 +100,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit2.kotlinx.serialization.converter)
 
-    //Serialization Json
+    //Serialization
     implementation(libs.kotlinx.serialization.json)
 
     //Hilt
@@ -94,21 +112,18 @@ dependencies {
     implementation(libs.paging.runtime)
     implementation(libs.paging.compose)
 
-    //Navigation Compose
+    //Navigation
     implementation(libs.navigation.compose)
 
     //Coil Compose
     implementation(libs.coil.compose)
 
-    //Material Icons Extended
-    implementation(libs.material.icons.extended)
+    //Lottie
+    implementation(libs.lottie.compose)
 
     //Core Splash Screen
     implementation(libs.core.splashscreen)
 
     //Palette
     implementation(libs.palette.ktx)
-
-    //Lottie
-    implementation(libs.lottie.compose)
 }
