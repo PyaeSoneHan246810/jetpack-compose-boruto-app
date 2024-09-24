@@ -108,4 +108,7 @@ dependencies {
 
     //Palette
     implementation(libs.palette.ktx)
+
+    //Lottie
+    implementation(libs.lottie.compose)
 }

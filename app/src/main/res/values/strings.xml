@@ -11,4 +11,11 @@
     <string name="unknown_error_message">Unknown Error Occurred.</string>
     <string name="search_hero">Find your favorite hero.</string>
     <string name="empty_search_result_message">Could not find any heroes.</string>
+    <string name="power">Power</string>
+    <string name="month">Month</string>
+    <string name="birthday">Birthday</string>
+    <string name="about">About</string>
+    <string name="family">Family</string>
+    <string name="abilities">Abilities</string>
+    <string name="nature_type">Nature Types</string>
 </resources>

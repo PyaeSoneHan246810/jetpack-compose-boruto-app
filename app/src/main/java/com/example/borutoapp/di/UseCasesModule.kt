@@ -6,6 +6,7 @@ import com.example.borutoapp.domain.usecase.app_entry_state.AppEntryStateUseCase
 import com.example.borutoapp.domain.usecase.app_entry_state.ReadAppEntryState
 import com.example.borutoapp.domain.usecase.app_entry_state.SaveAppEntryState
 import com.example.borutoapp.domain.usecase.heroes.GetAllHeroes
+import com.example.borutoapp.domain.usecase.heroes.GetHero
 import com.example.borutoapp.domain.usecase.heroes.HeroesUseCases
 import com.example.borutoapp.domain.usecase.heroes.SearchHeroes
 import dagger.Module
@@ -42,6 +43,9 @@ object UseCasesModule {
                 heroesDataSource = heroesDataSource
             ),
             searchHeroes = SearchHeroes(
+                heroesDataSource = heroesDataSource
+            ),
+            getHero = GetHero(
                 heroesDataSource = heroesDataSource
             )
         )

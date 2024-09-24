@@ -11,4 +11,7 @@ object Constants {
     const val RESPONSE_CONTENT_TYPE = "application/json"
     const val PAGING_PAGE_SIZE = 3
     const val CACHE_TIMEOUT_IN_MINUTES = 1440
+    const val VIBRANT_COLOR = "vibrant"
+    const val DARK_VIBRANT_COLOR = "darkVibrant"
+    const val ON_DARK_VIBRANT_COLOR = "onDarkVibrant"
 }

@@ -50,4 +50,8 @@ class HeroesDataSourceImpl(
         )
         return pager.flow
     }
+
+    override suspend fun getHero(heroId: Int): Hero {
+        return heroesDao.getSelectedHero(heroId = heroId)
+    }
 }

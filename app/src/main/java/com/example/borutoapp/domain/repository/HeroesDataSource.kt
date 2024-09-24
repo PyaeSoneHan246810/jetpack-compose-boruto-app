@@ -8,4 +8,6 @@ interface HeroesDataSource {
     fun getAllHeroes(): Flow<PagingData<Hero>>
 
     fun searchHeroes(name: String): Flow<PagingData<Hero>>
+
+    suspend fun getHero(heroId: Int): Hero
 }
