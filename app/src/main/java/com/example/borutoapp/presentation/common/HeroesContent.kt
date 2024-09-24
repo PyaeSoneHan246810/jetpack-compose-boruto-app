@@ -17,8 +17,8 @@ fun HeroesContent(
     heroesFlow:  Flow<PagingData<Hero>>?,
     onHeroClick: (heroId: Int) -> Unit
 ) {
-    heroesFlow?.let {  flow ->
-        val heroes = flow.collectAsLazyPagingItems()
+    if (heroesFlow != null) {
+        val heroes = heroesFlow.collectAsLazyPagingItems()
         val heroesLoadState = heroes.loadState
         val error = when {
             heroesLoadState.refresh is LoadState.Error -> heroesLoadState.refresh as LoadState.Error
@@ -77,10 +77,11 @@ fun HeroesContent(
                 )
             }
         }
+    } else {
+        EmptyDisplay(
+            modifier = modifier,
+            message = R.string.search_hero,
+            image = R.drawable.search
+        )
     }
-    EmptyDisplay(
-        modifier = modifier,
-        message = R.string.search_hero,
-        image = R.drawable.search
-    )
 }
